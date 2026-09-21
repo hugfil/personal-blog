@@ -25,10 +25,10 @@ const { Content } = await render(note);
   title={note.data.title}
   pubDate={note.data.pubDate}
   tags={note.data.tags}
-  backHref="/notes/"
+  backHref="/personal-blog/notes/"
   backLabel="all notes"
-  prevEntry={prevNote && { title: prevNote.data.title, href: `/notes/${prevNote.id}/` }}
-  nextEntry={nextNote && { title: nextNote.data.title, href: `/notes/${nextNote.id}/` }}
+  prevEntry={prevNote && { title: prevNote.data.title, href: `/personal-blog/notes/${prevNote.id}/` }}
+  nextEntry={nextNote && { title: nextNote.data.title, href: `/personal-blog/notes/${nextNote.id}/` }}
 >
   <Content />
 </EntryLayout>

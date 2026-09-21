@@ -27,10 +27,10 @@ const { Content } = await render(post);
   pubDate={post.data.pubDate}
   updatedDate={post.data.updatedDate}
   tags={post.data.tags}
-  backHref="/blog/"
+  backHref="/personal-blog/blog/"
   backLabel="all posts"
-  prevEntry={prevPost && { title: prevPost.data.title, href: `/blog/${prevPost.id}/` }}
-  nextEntry={nextPost && { title: nextPost.data.title, href: `/blog/${nextPost.id}/` }}
+  prevEntry={prevPost && { title: prevPost.data.title, href: `/personal-blog/blog/${prevPost.id}/` }}
+  nextEntry={nextPost && { title: nextPost.data.title, href: `/personal-blog/blog/${nextPost.id}/` }}
 >
   <Content />
 </EntryLayout>

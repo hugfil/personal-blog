@@ -26,10 +26,10 @@ const { Content } = await render(project);
   description={project.data.description}
   pubDate={project.data.pubDate}
   tags={project.data.tags}
-  backHref="/projects/"
+  backHref="/personal-blog/projects/"
   backLabel="all projects"
-  prevEntry={prevProject && { title: prevProject.data.title, href: `/projects/${prevProject.id}/` }}
-  nextEntry={nextProject && { title: nextProject.data.title, href: `/projects/${nextProject.id}/` }}
+  prevEntry={prevProject && { title: prevProject.data.title, href: `/personal-blog/projects/${prevProject.id}/` }}
+  nextEntry={nextProject && { title: nextProject.data.title, href: `/personal-blog/projects/${nextProject.id}/` }}
 >
   {(project.data.url || project.data.repo) && (
     <p>
