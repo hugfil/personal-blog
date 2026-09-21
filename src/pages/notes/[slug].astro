@@ -1,0 +1,34 @@
+---
+import EntryLayout from '../../layouts/EntryLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  return notes.map((note, index) => ({
+    params: { slug: note.id },
+    props: {
+      note,
+      prevNote: notes[index + 1] ?? null,
+      nextNote: notes[index - 1] ?? null,
+    },
+  }));
+}
+
+const { note, prevNote, nextNote } = Astro.props;
+const { Content } = await render(note);
+---
+
+<EntryLayout
+  title={note.data.title}
+  pubDate={note.data.pubDate}
+  tags={note.data.tags}
+  backHref="/notes/"
+  backLabel="all notes"
+  prevEntry={prevNote && { title: prevNote.data.title, href: `/notes/${prevNote.id}/` }}
+  nextEntry={nextNote && { title: nextNote.data.title, href: `/notes/${nextNote.id}/` }}
+>
+  <Content />
+</EntryLayout>

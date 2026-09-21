@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Search">
+  <h1>Search</h1>
+  <input
+    type="search"
+    id="search-input"
+    class="search-input"
+    placeholder="Search posts and notes…"
+    autofocus
+  />
+  <div id="tag-filters" class="tag-filters"></div>
+  <ul class="entry-list" id="search-results"></ul>
+  <p class="entry-meta" id="search-empty" hidden>No matches.</p>
+</BaseLayout>
+
+<script>
+  type Entry = {
+    title: string;
+    description: string;
+    pubDate: string;
+    url: string;
+    type: 'blog' | 'note';
+    tags: string[];
+  };
+
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const resultsEl = document.getElementById('search-results') as HTMLUListElement;
+  const emptyEl = document.getElementById('search-empty') as HTMLParagraphElement;
+  const tagFiltersEl = document.getElementById('tag-filters') as HTMLDivElement;
+
+  let entries: Entry[] = [];
+  let selectedTag: string | null = new URLSearchParams(location.search).get('tag');
+
+  function renderResults(list: Entry[]) {
+    resultsEl.innerHTML = '';
+    const hasQuery = input.value.trim() !== '' || selectedTag;
+    emptyEl.hidden = list.length > 0 || !hasQuery;
+
+    for (const entry of list) {
+      const li = document.createElement('li');
+
+      const a = document.createElement('a');
+      a.className = 'entry-title';
+      a.href = entry.url;
+      a.textContent = entry.title;
+
+      const time = document.createElement('time');
+      const d = new Date(entry.pubDate);
+      time.dateTime = d.toISOString();
+      time.textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      li.append(a, time);
+      resultsEl.append(li);
+    }
+  }
+
+  function renderTagFilters() {
+    const allTags = [...new Set(entries.flatMap((e) => e.tags))].sort();
+    tagFiltersEl.innerHTML = '';
+
+    for (const tag of allTags) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tag tag-filter-btn';
+      btn.textContent = tag;
+      btn.setAttribute('aria-pressed', String(tag === selectedTag));
+      if (tag === selectedTag) btn.classList.add('tag-active');
+
+      btn.addEventListener('click', () => {
+        selectedTag = selectedTag === tag ? null : tag;
+        const url = new URL(location.href);
+        if (selectedTag) url.searchParams.set('tag', selectedTag);
+        else url.searchParams.delete('tag');
+        history.replaceState(null, '', url);
+        renderTagFilters();
+        filterAndRender();
+      });
+
+      tagFiltersEl.append(btn);
+    }
+  }
+
+  function filterAndRender() {
+    const q = input.value.trim().toLowerCase();
+    let list = entries;
+
+    if (selectedTag) {
+      list = list.filter((e) => e.tags.includes(selectedTag as string));
+    }
+    if (q !== '') {
+      list = list.filter(
+        (e) => e.title.toLowerCase().includes(q) || e.description.toLowerCase().includes(q)
+      );
+    }
+
+    renderResults(q === '' && !selectedTag ? entries.slice(0, 10) : list);
+  }
+
+  fetch('/search-index.json')
+    .then((res) => res.json())
+    .then((data: Entry[]) => {
+      entries = data;
+      renderTagFilters();
+      filterAndRender();
+    });
+
+  input.addEventListener('input', filterAndRender);
+</script>

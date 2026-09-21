@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+
+const dateFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+---
+
+<BaseLayout title="Hugo Gonçalves">
+  <div class="hero">
+    <img class="avatar" src="https://i.pravatar.cc/300?img=13" alt="Hugo Gonçalves" width="96" height="96" />
+    <h1>Hugo Gonçalves</h1>
+    <p>
+      Write a short introduction about yourself here — what you do, what you're
+      interested in, where to find you elsewhere. Edit this in
+      <code>src/pages/index.astro</code>.
+    </p>
+  </div>
+
+  <h2>Recent posts</h2>
+  <ul class="entry-list">
+    {posts.map((post) => (
+      <li>
+        <a class="entry-title" href={`/blog/${post.id}/`}>{post.data.title}</a>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('en-US', dateFormat)}
+        </time>
+      </li>
+    ))}
+  </ul>
+  <p><a class="content-link nav-link" href="/blog/">all posts</a></p>
+</BaseLayout>

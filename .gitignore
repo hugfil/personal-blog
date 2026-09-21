@@ -1,0 +1,20 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# generated types
+.astro/
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains/vscode
+.idea/
+.vscode/*
+!.vscode/extensions.json

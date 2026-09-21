@@ -1,0 +1,42 @@
+---
+import EntryLayout from '../../layouts/EntryLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  return projects.map((project, index) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      prevProject: projects[index + 1] ?? null,
+      nextProject: projects[index - 1] ?? null,
+    },
+  }));
+}
+
+const { project, prevProject, nextProject } = Astro.props;
+const { Content } = await render(project);
+---
+
+<EntryLayout
+  title={project.data.title}
+  description={project.data.description}
+  pubDate={project.data.pubDate}
+  tags={project.data.tags}
+  backHref="/projects/"
+  backLabel="all projects"
+  prevEntry={prevProject && { title: prevProject.data.title, href: `/projects/${prevProject.id}/` }}
+  nextEntry={nextProject && { title: nextProject.data.title, href: `/projects/${nextProject.id}/` }}
+>
+  {(project.data.url || project.data.repo) && (
+    <p>
+      {project.data.url && <a class="content-link" href={project.data.url}>live</a>}
+      {project.data.url && project.data.repo && ' · '}
+      {project.data.repo && <a class="content-link" href={project.data.repo}>source</a>}
+    </p>
+  )}
+  <Content />
+</EntryLayout>

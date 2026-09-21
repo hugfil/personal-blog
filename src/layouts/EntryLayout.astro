@@ -1,0 +1,73 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface AdjacentEntry {
+  title: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  backHref: string;
+  backLabel: string;
+  prevEntry?: AdjacentEntry | null;
+  nextEntry?: AdjacentEntry | null;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  tags = [],
+  backHref,
+  backLabel,
+  prevEntry = null,
+  nextEntry = null,
+} = Astro.props;
+
+const dateFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+---
+
+<BaseLayout title={title} description={description}>
+  <p><a class="content-link nav-link" href={backHref}>{backLabel}</a></p>
+  <h1>{title}</h1>
+  <p class="entry-meta">
+    <time datetime={pubDate.toISOString()}>{pubDate.toLocaleDateString('en-US', dateFormat)}</time>
+    {updatedDate && (
+      <> · updated <time datetime={updatedDate.toISOString()}>{updatedDate.toLocaleDateString('en-US', dateFormat)}</time></>
+    )}
+  </p>
+  {tags.length > 0 && (
+    <div class="tag-row">
+      {tags.map((tag) => <a class="tag" href={`/search/?tag=${encodeURIComponent(tag)}`}>{tag}</a>)}
+    </div>
+  )}
+  <div class="prose">
+    <slot />
+  </div>
+  {(prevEntry || nextEntry) && (
+    <nav class="entry-pagination">
+      <div class="pagination-prev">
+        {prevEntry && (
+          <>
+            <span class="pagination-label">Previous</span>
+            <a class="entry-title" href={prevEntry.href}>{prevEntry.title}</a>
+          </>
+        )}
+      </div>
+      <div class="pagination-next">
+        {nextEntry && (
+          <>
+            <span class="pagination-label">Next</span>
+            <a class="entry-title" href={nextEntry.href}>{nextEntry.title}</a>
+          </>
+        )}
+      </div>
+    </nav>
+  )}
+</BaseLayout>
