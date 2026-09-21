@@ -25,7 +25,7 @@ const years = [...byYear.keys()].sort((a, b) => b - a);
       <ul class="entry-list">
         {byYear.get(year)!.map((post) => (
           <li>
-            <a class="entry-title" href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <a class="entry-title" href={`/personal-blog/blog/${post.id}/`}>{post.data.title}</a>
             <time datetime={post.data.pubDate.toISOString()}>
               {post.data.pubDate.toLocaleDateString('en-US', dateFormat)}
             </time>
