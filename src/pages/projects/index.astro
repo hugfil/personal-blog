@@ -13,7 +13,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
     {projects.map((project) => (
       <li>
         <div>
-          <a class="entry-title" href={`/projects/${project.id}/`}>{project.data.title}</a>
+          <a class="entry-title" href={`/personal-blog/projects/${project.id}/`}>{project.data.title}</a>
           <p>{project.data.description}</p>
         </div>
       </li>

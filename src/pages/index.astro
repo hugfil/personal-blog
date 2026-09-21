@@ -28,7 +28,7 @@ const baseUrl = import.meta.env.BASE_URL;
     {posts.map((post) => (
       <li>
         <!-- Correção: Injeta a subpasta correta antes do link do post -->
-        <a class="entry-title" href={`${baseUrl}blog/${post.id}/`}>{post.data.title}</a>
+        <a class="entry-title" href={`/personal-blog/blog/${post.id}/`}>{post.data.title}</a>
         <time datetime={post.data.pubDate.toISOString()}>
           {post.data.pubDate.toLocaleDateString('en-US', dateFormat)}
         </time>
