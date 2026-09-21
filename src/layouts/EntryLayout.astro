@@ -44,7 +44,7 @@ const dateFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short'
   </p>
   {tags.length > 0 && (
     <div class="tag-row">
-      {tags.map((tag) => <a class="tag" href={`/search/?tag=${encodeURIComponent(tag)}`}>{tag}</a>)}
+      {tags.map((tag) => <a class="tag" href={`/personal-blog/search/?tag=${encodeURIComponent(tag)}`}>{tag}</a>)}
     </div>
   )}
   <div class="prose">

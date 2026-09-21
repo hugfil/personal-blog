@@ -99,7 +99,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     renderResults(q === '' && !selectedTag ? entries.slice(0, 10) : list);
   }
 
-  fetch('/search-index.json')
+fetch('/personal-blog/search-index.json')
     .then((res) => res.json())
     .then((data: Entry[]) => {
       entries = data;
