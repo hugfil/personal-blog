@@ -7,6 +7,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .slice(0, 5);
 
 const dateFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+
+// Obtém automaticamente o caminho correto da subpasta ('/personal-blog/')
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Hugo Gonçalves">
@@ -24,12 +27,14 @@ const dateFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short'
   <ul class="entry-list">
     {posts.map((post) => (
       <li>
-        <a class="entry-title" href={`/blog/${post.id}/`}>{post.data.title}</a>
+        <!-- Correção: Injeta a subpasta correta antes do link do post -->
+        <a class="entry-title" href={`${baseUrl}blog/${post.id}/`}>{post.data.title}</a>
         <time datetime={post.data.pubDate.toISOString()}>
           {post.data.pubDate.toLocaleDateString('en-US', dateFormat)}
         </time>
       </li>
     ))}
   </ul>
-  <p><a class="content-link nav-link" href="/blog/">all posts</a></p>
+  <!-- Correção: Injeta a subpasta correta no link para ver todos os posts -->
+  <p><a class="content-link nav-link" href={`${baseUrl}blog/`}>all posts</a></p>
 </BaseLayout>

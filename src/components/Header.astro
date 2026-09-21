@@ -1,13 +1,15 @@
 ---
 const { pathname } = Astro.url;
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const links = [
-  { href: '/', label: 'home' },
-  { href: '/about/', label: 'about' },
-  { href: '/blog/', label: 'blog' },
-  { href: '/projects/', label: 'projects' },
-  { href: '/notes/', label: 'notes' },
-  { href: '/resume/', label: 'resume' },
+  { href: `${baseUrl}`, label: 'home' },
+  { href: `${baseUrl}about/`, label: 'about' },
+  { href: `${baseUrl}blog/`, label: 'blog' },
+  { href: `${baseUrl}projects/`, label: 'projects' },
+  { href: `${baseUrl}notes/`, label: 'notes' },
+  { href: `${baseUrl}resume/`, label: 'resume' },
 ];
 
 function isCurrent(href: string) {

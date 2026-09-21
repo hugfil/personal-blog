@@ -1,16 +1,20 @@
 ---
+// src/components/Footer.astro
 const year = new Date().getFullYear();
+const baseUrl = import.meta.env.BASE_URL; // <--- Injeta dinamicamente a subpasta do GitHub
 ---
 
 <footer class="site-footer">
   <p>© {year} Hugo Gonçalves</p>
   <div class="social-links">
+    <!-- Link Externo: Mantém-se igual -->
     <a href="https://pt.linkedin.com/in/hugfil" aria-label="LinkedIn" class="social-icon">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45C23.2 24 24 23.22 24 22.25V1.75C24 .78 23.2 0 22.22 0z"></path>
       </svg>
     </a>
-    <a href="/rss.xml" aria-label="RSS feed" class="social-icon rss-icon">
+    <!-- Correção: Injeta o baseUrl antes do caminho do ficheiro RSS -->
+    <a href={`${baseUrl}rss.xml`} aria-label="RSS feed" class="social-icon rss-icon">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M4 11a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3zm0-6a15 15 0 0 1 15 15h-3A12 12 0 0 0 4 8V5zm0 12.5A1.5 1.5 0 1 1 4 20.5a1.5 1.5 0 0 1 0-3z"></path>
       </svg>
