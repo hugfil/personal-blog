@@ -1,101 +1,71 @@
 ---
-// src/pages/404.astro
-import Layout from '../layouts/BaseLayout.astro'; // <--- O import que já sabemos que funciona no seu tema!
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<Layout title="404 - Page Not Found">
-  <!-- Injeta o redirecionamento nativo do navegador no cabeçalho do site -->
-  <Fragment slot="head">
-    <meta http-equiv="refresh" content="5;url=/" />
-  </Fragment>
-
-  <main class="error-container">
+<BaseLayout title="404 - Page Not Found">
+  <div class="error-container">
     <div class="error-content">
       <h1 class="error-code">404</h1>
       <h2>Oops! Page Not Found</h2>
       <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-      
+
       <div class="redirect-box">
         You will be automatically redirected to the homepage in a few seconds.
       </div>
       <br />
-      <a href="/" class="btn-home">Take Me Home Now</a>
+      <a href="/personal-blog/" class="content-link">Take Me Home Now</a>
     </div>
-  </main>
-</Layout>
+  </div>
+</BaseLayout>
 
 <style>
-  /* Mantemos o mesmo CSS básico ajustado para não quebrar o tema */
   .error-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 60vh; /* Reduzido para caber bem entre o header e o footer do tema */
-    padding: 2rem;
+    min-height: 50vh;
+    padding: 2rem 1.25rem;
     text-align: center;
-    font-family: system-ui, -apple-system, sans-serif;
   }
+
   .error-content {
-    max-width: 550px;
+    max-width: 32rem;
   }
+
   .error-code {
-    font-size: 7rem;
-    font-weight: 900;
+    font-size: 6rem;
+    font-weight: 700;
     margin: 0;
-    background: linear-gradient(45deg, #4f46e5, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-muted);
     line-height: 1;
+    letter-spacing: -0.02em;
   }
-  h2 {
-    font-size: 1.8rem;
-    margin: 1rem 0;
-    color: #111827;
+
+  .error-content h2 {
+    font-size: 1.5rem;
+    margin: 1rem 0 0.75rem;
+    color: var(--text);
   }
-  p {
-    color: #4b5563;
-    font-size: 1rem;
+
+  .error-content p {
+    color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
-  .redirect-box {
-    background-color: #f3f4f6;
-    color: #374151;
-    padding: 0.75rem 1rem;
-    border-radius: 0.375rem;
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-    display: inline-block;
-  }
-  .btn-home {
-    display: inline-block;
-    background-color: #4f46e5;
-    color: white;
-    padding: 0.85rem 1.75rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.2s, background-color 0.2s;
-    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
-  }
-  .btn-home:hover {
-    background-color: #4338ca;
-    transform: translateY(-2px);
-  }
 
-  @media (prefers-color-scheme: dark) {
-    h2 { color: #f9fafb; }
-    p { color: #9ca3af; }
-    .redirect-box {
-      background-color: #1f2937;
-      color: #d1d5db;
-    }
+  .redirect-box {
+    background: var(--code-bg);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: inline-block;
   }
 </style>
 
-<!-- Adicione isto no fim do ficheiro, abaixo de </style> -->
 <script is:inline>
   setTimeout(() => {
     window.location.href = '/personal-blog/';
-  }, 5000); // Aguarda 5 segundos (5000ms) antes de mudar de página
+  }, 5000);
 </script>
