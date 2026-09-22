@@ -13,7 +13,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         You will be automatically redirected to the homepage in a few seconds.
       </div>
       <br />
-      <a href="/personal-blog/" class="content-link">Take Me Home Now</a>
+      <a href="/personal-blog/" class="btn-home">
+        Take Me Home Now
+        <span class="btn-arrow">&rarr;</span>
+      </a>
     </div>
   </div>
 </BaseLayout>
@@ -61,6 +64,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border-radius: 8px;
     font-size: 0.9rem;
     display: inline-block;
+  }
+
+  .btn-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    padding: 0.8rem 1.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 10px 24px -10px var(--text);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  }
+
+  .btn-home:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -8px var(--text);
+    opacity: 0.9;
+  }
+
+  .btn-home:active {
+    transform: translateY(-1px);
+  }
+
+  .btn-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-home:hover .btn-arrow {
+    transform: translateX(3px);
   }
 </style>
 
