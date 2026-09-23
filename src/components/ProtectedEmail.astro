@@ -15,7 +15,7 @@ const encoded = Buffer.from(email).toString('base64');
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
     </svg>
-    <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
+    <svg class="icon-check is-hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
   </button>
@@ -79,6 +79,10 @@ const encoded = Buffer.from(email).toString('base64');
   .icon-check {
     color: #4ade80;
   }
+
+  .protected-email .is-hidden {
+    display: none !important;
+  }
 </style>
 
 <script>
@@ -98,8 +102,8 @@ const encoded = Buffer.from(email).toString('base64');
         console.error('Copy failed', err);
       }
 
-      iconCopy.hidden = true;
-      iconCheck.hidden = false;
+      iconCopy.classList.add('is-hidden');
+      iconCheck.classList.remove('is-hidden');
       textEl.textContent = 'copied';
       firstClickDone = true;
 
