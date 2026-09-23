@@ -107,14 +107,12 @@ const encoded = Buffer.from(email).toString('base64');
       e.stopPropagation();
       try {
         await navigator.clipboard.writeText(email);
-        textEl.textContent = 'copied';
+        revealed = true;
         iconCopy.hidden = true;
         iconCheck.hidden = false;
+        textEl.textContent = 'copied';
         setTimeout(() => {
           textEl.textContent = email;
-          revealed = true;
-          iconCopy.hidden = false;
-          iconCheck.hidden = true;
         }, 1500);
       } catch (err) {
         console.error('Copy failed', err);
