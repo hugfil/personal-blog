@@ -19,5 +19,27 @@ const baseUrl = import.meta.env.BASE_URL; // <--- Injeta dinamicamente a subpast
         <path d="M4 11a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3zm0-6a15 15 0 0 1 15 15h-3A12 12 0 0 0 4 8V5zm0 12.5A1.5 1.5 0 1 1 4 20.5a1.5 1.5 0 0 1 0-3z"></path>
       </svg>
     </a>
+    <button type="button" class="social-icon footer-email-copy" data-email="hugfil@gmail.com" aria-label="Copy email address">
+      email
+    </button>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.footer-email-copy').forEach((btn) => {
+    const email = btn.getAttribute('data-email') || '';
+    const originalText = btn.textContent;
+
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        btn.textContent = 'copied';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 1500);
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+    });
+  });
+</script>

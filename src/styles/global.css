@@ -287,6 +287,14 @@ h1, h2, h3, h4 {
   opacity: 1;
 }
 
+.footer-email-copy {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
 .hero {
   text-align: center;
   padding-bottom: 3.5rem;
