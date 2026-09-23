@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProtectedEmail from '../components/ProtectedEmail.astro';
 ---
 
 <BaseLayout title="About">
@@ -30,6 +31,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     may u needs ✨
   </p>
   <p>
-    - hugfil@gmail.com
+    <ProtectedEmail email="hugfil@gmail.com" />
   </p>
 </BaseLayout>

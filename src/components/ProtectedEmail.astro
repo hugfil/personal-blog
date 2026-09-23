@@ -1,0 +1,124 @@
+---
+interface Props {
+  email: string;
+}
+
+const { email } = Astro.props;
+const encoded = Buffer.from(email).toString('base64');
+---
+
+<div class="protected-email" data-email={encoded}>
+  <code class="protected-email-text">[email protected]</code>
+  <span class="protected-email-divider" aria-hidden="true"></span>
+  <button type="button" class="protected-email-copy" aria-label="Copy email address">
+    <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .protected-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--code-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.55rem 0.6rem 0.55rem 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .protected-email:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  .protected-email-text {
+    background: none;
+    padding: 0;
+    color: inherit;
+    letter-spacing: 0.02em;
+  }
+
+  .protected-email-divider {
+    width: 1px;
+    align-self: stretch;
+    background: currentColor;
+    opacity: 0.25;
+  }
+
+  .protected-email-copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .protected-email-copy:hover {
+    background: color-mix(in srgb, currentColor 15%, transparent);
+  }
+
+  .icon-check {
+    color: #4ade80;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.protected-email').forEach((el) => {
+    const textEl = el.querySelector('.protected-email-text');
+    const copyBtn = el.querySelector('.protected-email-copy');
+    const iconCopy = el.querySelector('.icon-copy');
+    const iconCheck = el.querySelector('.icon-check');
+    const encoded = el.getAttribute('data-email') || '';
+    const email = encoded ? atob(encoded) : '';
+    let revealed = false;
+
+    function reveal() {
+      if (!revealed && email) {
+        textEl.textContent = email;
+        revealed = true;
+      }
+    }
+
+    el.addEventListener('click', (e) => {
+      if (copyBtn.contains(e.target)) return;
+      reveal();
+    });
+
+    copyBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      try {
+        await navigator.clipboard.writeText(email);
+        textEl.textContent = 'copied';
+        iconCopy.hidden = true;
+        iconCheck.hidden = false;
+        setTimeout(() => {
+          textEl.textContent = email;
+          revealed = true;
+          iconCopy.hidden = false;
+          iconCheck.hidden = true;
+        }, 1500);
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+    });
+  });
+</script>
