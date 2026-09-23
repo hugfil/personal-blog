@@ -68,3 +68,55 @@ const encoded = Buffer.from(email).toString('base64');
     border: none;
     background: transparent;
     color: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .protected-email-copy:hover {
+    background: color-mix(in srgb, currentColor 15%, transparent);
+  }
+
+  .icon-check {
+    color: #4ade80;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.protected-email').forEach((el) => {
+    const textEl = el.querySelector('.protected-email-text');
+    const copyBtn = el.querySelector('.protected-email-copy');
+    const iconCopy = el.querySelector('.icon-copy');
+    const iconCheck = el.querySelector('.icon-check');
+    const encoded = el.getAttribute('data-email') || '';
+    const email = encoded ? atob(encoded) : '';
+    let firstClickDone = false;
+
+    async function doCopy() {
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+
+      iconCopy.hidden = true;
+      iconCheck.hidden = false;
+      textEl.textContent = 'copied';
+      firstClickDone = true;
+
+      setTimeout(() => {
+        textEl.textContent = email;
+      }, 1500);
+    }
+
+    el.addEventListener('click', () => {
+      if (!firstClickDone) {
+        doCopy();
+      }
+    });
+
+    copyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      doCopy();
+    });
+  });
+</script>
