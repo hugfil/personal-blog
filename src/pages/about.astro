@@ -1,36 +1,57 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProtectedEmail from '../components/ProtectedEmail.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="About">
-  <p class="about-greeting">Hello all 👋.</p>
+  <p class="about-greeting">Hello all 👋</p>
   <p>
     I'm Hugo, from Braga, and I work as a software testing consultant and team lead
     at <a class="content-link" href="https://www.noesis.pt/" target="_blank" rel="noopener noreferrer">Noesis</a> with more than 10 years of experience in the field.
   </p>
   <p>
-    Over the years, I have worked with manual testing in different technological ecosystems and runtime environments, also API testing, and picked up automation along the way with tools like Selenium, Robot Framework, Cypress, and Playwright.
+    Over the years, I have worked with manual testing in different technological ecosystems
+    and runtime environments, also API testing, and picked up automation along the way with tools
+    like Selenium, Robot Framework, Cypress, and Playwright.
   </p>
   <p>
-    I also have experience using BDD in testing, contributing to the development process from a very early stage, particularly in aligning the business with the technical team.
+    I also have experience using BDD in testing, contributing to the development process from
+    a very early stage, particularly in aligning the business with the technical team.
   </p>
   <p>
-    I'm ISTQB Foundation Level and ITIL certified, and just as much shaped by being stubbornly curious about why things break. This is where I write about all of it.
+    I'm ISTQB Foundation Level and ITIL certified, and just as much shaped by being stubbornly
+    curious about why things break. This is where I write about all of it.
   </p>
-  <p class="extra-space">
+  <p>
     Hobbies/interesses: música, guitarra, leitura de autores clássicos
   </p>
-  <p class="extra-space">
+  <p>
     If you have any questions, you can send me a letter.
   </p>
-  <p class="extra-space">
+  <p>
     I would appreciate if you could report me if there is an broken link(s) or something else.
   </p>
-  <p class="extra-space">
+  <p>
     may u needs ✨
   </p>
   <p>
     <ProtectedEmail email="hugfil@gmail.com" />
   </p>
+
+  <section class="worked-with">
+    <h2 class="worked-with-label">Worked With</h2>
+    <div class="worked-with-grid">
+      <div class="logo-card">
+        <img src={`${baseUrl}grupo-pinero_logo.svg`} alt="Grupo Piñero" />
+      </div>
+      <div class="logo-card">
+        <img src={`${baseUrl}mbcp_logo.svg`} alt="Millenium BCP" />
+      </div>
+      <div class="logo-card">
+        <img src={`${baseUrl}f3m_logo.svg`} alt="F3M Information Systems, S.A." />
+      </div>
+    </div>
+  </section>
 </BaseLayout>
