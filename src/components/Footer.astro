@@ -19,23 +19,37 @@ const baseUrl = import.meta.env.BASE_URL; // <--- Injeta dinamicamente a subpast
         <path d="M4 11a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3zm0-6a15 15 0 0 1 15 15h-3A12 12 0 0 0 4 8V5zm0 12.5A1.5 1.5 0 1 1 4 20.5a1.5 1.5 0 0 1 0-3z"></path>
       </svg>
     </a>
-    <button type="button" class="social-icon footer-email-copy" data-email="hugfil@gmail.com" aria-label="Copy email address">
-      email
+    <button type="button" class="footer-email-btn" data-email="hugfil@gmail.com" aria-label="Copy email address">
+      <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <svg class="icon-check is-hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span class="footer-email-text">email</span>
     </button>
   </div>
 </footer>
 
 <script>
-  document.querySelectorAll('.footer-email-copy').forEach((btn) => {
+  document.querySelectorAll('.footer-email-btn').forEach((btn) => {
     const email = btn.getAttribute('data-email') || '';
-    const originalText = btn.textContent;
+    const textEl = btn.querySelector('.footer-email-text');
+    const iconCopy = btn.querySelector('.icon-copy');
+    const iconCheck = btn.querySelector('.icon-check');
 
     btn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(email);
-        btn.textContent = 'copied';
+        textEl.textContent = 'copied';
+        iconCopy.classList.add('is-hidden');
+        iconCheck.classList.remove('is-hidden');
+
         setTimeout(() => {
-          btn.textContent = originalText;
+          textEl.textContent = 'email';
+          iconCopy.classList.remove('is-hidden');
+          iconCheck.classList.add('is-hidden');
         }, 1500);
       } catch (err) {
         console.error('Copy failed', err);
