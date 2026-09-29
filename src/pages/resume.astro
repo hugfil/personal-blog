@@ -11,8 +11,8 @@ const comConteudo = await Promise.all(
 );
 
 const secoes = [
-  { id: 'experiencia', titulo: 'Experiência' },
-  { id: 'formacao', titulo: 'Formação' },
+  { id: 'experiencia', titulo: 'Experience' },
+  { id: 'formacao', titulo: 'Education' },
 ];
 ---
 
@@ -28,7 +28,7 @@ const secoes = [
               <header class="cv-topo">
                 <span class="cv-selo">
                   {!data.fim && <span class="cv-agora" aria-hidden="true" />}
-                  {data.inicio} – {data.fim ?? 'presente'}
+                  {data.inicio} – {data.fim ?? 'present'}
                 </span>
                 {data.logo && (
                   <img class="cv-logo" src={data.logo} alt="" loading="lazy" />
@@ -48,8 +48,8 @@ const secoes = [
     </section>
   ))}
   <p class="cv-pdf-rodape">
-    <a class="cv-pdf" href="/cv.pdf" target="_blank" rel="noopener">
-      Ver CV completo (PDF) <span aria-hidden="true">↗</span>
+    <a class="cv-pdf" href="/personal-blog/404"" target="_blank" rel="noopener">
+      Full CV (PDF) <span aria-hidden="true">↗</span>
     </a>
   </p>  
 </Layout>
@@ -170,14 +170,40 @@ const secoes = [
     padding: 0.1rem 0.6rem;
   }
 
+  .cv-pdf-rodape { margin: 2.5rem 0 1rem; }
+
+  .cv-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--text-muted) 45%, transparent);
+    border-radius: 999px;
+    background: var(--code-bg);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .cv-pdf:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }  
+
   @media (prefers-reduced-motion: reduce) {
     .cv-cartao { transition: none; }
     .cv-cartao:hover { transform: none; }
     .cv-agora { animation: none; }
+    .cv-pdf { transition: none; }  
   }
 
   @media print {
     .cv-cartao { break-inside: avoid; }
     .cv-cartao:hover { transform: none; }
+    .cv-pdf-rodape { display: none; }
   }
 </style>
