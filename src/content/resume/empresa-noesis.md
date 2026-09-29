@@ -2,7 +2,7 @@
 tipo: experiencia
 titulo: O teu cargo
 local: Noesis
-logo: /personal-blog/noesis-logo_sq.svg
+logo: /personal-blog/noesis_logo_sq.svg
 inicio: 2019
 destaque: true
 tags: [Python, Cloud]
