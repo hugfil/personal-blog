@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 const entradas = (await getCollection('resume')).sort(
