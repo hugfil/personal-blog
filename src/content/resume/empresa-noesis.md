@@ -1,9 +1,9 @@
 ---
 tipo: experiencia
 titulo: O teu cargo
-local: Crédito Agrícola 
-logo: /personal-blog/grupo-pinero_logo_sq.svg
-inicio: 2025
+local: Noesis
+logo: /personal-blog/noesis-logo_sq.svg
+inicio: 2019
 destaque: true
 tags: [Python, Cloud]
 ---

@@ -2,7 +2,7 @@
 tipo: experiencia
 titulo: O teu cargo
 local: Millenium bcp
-logo: /personal-blog/grupo-pinero_logo_sq.svg
+logo: /personal-blog/mbcp_logo_sq.svg
 inicio: 2019
 fim: 2022
 tags: [Python, Cloud]
