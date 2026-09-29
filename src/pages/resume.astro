@@ -1,10 +1,16 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 
-const entradas = (await getCollection('resume')).sort(
-  (a, b) => b.data.inicio - a.data.inicio
-);
+// Formação ordena pelo ano de fim; Experiência pelo ano de início.
+// Sem "fim" (ainda a decorrer) conta como o mais recente.
+const chave = (e: CollectionEntry<'resume'>) =>
+  e.data.tipo === 'formacao' ? (e.data.fim ?? 9999) : e.data.inicio;
+
+const entradas = (await getCollection('resume')).sort((a, b) => {
+  if (a.data.destaque !== b.data.destaque) return a.data.destaque ? -1 : 1;
+  return chave(b) - chave(a) || b.data.inicio - a.data.inicio;
+});
 
 const comConteudo = await Promise.all(
   entradas.map(async (e) => ({ ...e, Content: (await render(e)).Content }))
@@ -28,7 +34,9 @@ const secoes = [
               <header class="cv-topo">
                 <span class="cv-selo">
                   {!data.fim && <span class="cv-agora" aria-hidden="true" />}
-                  {data.inicio} – {data.fim ?? 'present'}
+                  {data.tipo === 'formacao'
+                    ? (data.fim ?? 'present')
+                    : `${data.inicio} – ${data.fim ?? 'present'}`}
                 </span>
                 {data.logo && (
                   <img class="cv-logo" src={data.logo} alt="" loading="lazy" />
@@ -51,7 +59,7 @@ const secoes = [
     <a class="cv-pdf" href="/personal-blog/404">
       Full CV (PDF) <span aria-hidden="true">↓</span>
     </a>
-  </p>  
+  </p>
 </Layout>
 
 <style>
@@ -192,13 +200,13 @@ const secoes = [
   .cv-pdf:hover {
     border-color: var(--accent);
     color: var(--text);
-  }  
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .cv-cartao { transition: none; }
     .cv-cartao:hover { transform: none; }
     .cv-agora { animation: none; }
-    .cv-pdf { transition: none; }  
+    .cv-pdf { transition: none; }
   }
 
   @media print {
