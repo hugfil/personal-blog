@@ -2,7 +2,7 @@
 tipo: experiencia
 titulo: O teu cargo
 local: Nome da 
-logo: /grupo-pinero_logo.svg
+logo: /personal-blog/grupo-pinero_logo.svg
 inicio: 2022
 destaque: true
 tags: [Python, Cloud]
