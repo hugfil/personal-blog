@@ -1,10 +1,10 @@
 ---
 tipo: experiencia
 titulo: O teu cargo
-local: Grupo Piñero 
+local: Millenium bcp
 logo: /personal-blog/grupo-pinero_logo_sq.svg
-inicio: 2022
-fim: 2025
+inicio: 2019
+fim: 2022
 tags: [Python, Cloud]
 ---
 

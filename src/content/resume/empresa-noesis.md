@@ -1,9 +1,9 @@
 ---
 tipo: experiencia
 titulo: O teu cargo
-local: Nome da 
+local: Crédito Agrícola 
 logo: /personal-blog/grupo-pinero_logo_sq.svg
-inicio: 2022
+inicio: 2025
 destaque: true
 tags: [Python, Cloud]
 ---
