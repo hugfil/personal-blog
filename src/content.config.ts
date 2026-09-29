@@ -39,4 +39,20 @@ const notes = defineCollection({
   }),
 });
 
-export const collections = { blog, projects, notes };
+// Resume entries: one .md per job or degree. Sorted by `inicio` on the resume page.
+// No `fim` = still ongoing. `logo` is a path under /public (e.g. /logos/empresa.svg).
+const resume = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/resume' }),
+  schema: z.object({
+    tipo: z.enum(['experiencia', 'formacao']),
+    titulo: z.string(),
+    local: z.string(),
+    inicio: z.number(),
+    fim: z.number().optional(),
+    destaque: z.boolean().default(false),
+    logo: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { blog, projects, notes, resume };

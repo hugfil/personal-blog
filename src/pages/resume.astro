@@ -1,26 +1,175 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+const entradas = (await getCollection('resume')).sort(
+  (a, b) => b.data.inicio - a.data.inicio
+);
+
+const comConteudo = await Promise.all(
+  entradas.map(async (e) => ({ ...e, Content: (await render(e)).Content }))
+);
+
+const secoes = [
+  { id: 'experiencia', titulo: 'Experiência' },
+  { id: 'formacao', titulo: 'Formação' },
+];
 ---
 
-<BaseLayout title="Resume">
-  <h1>Resume</h1>
-  <p>
-    <a class="content-link" href="/personal-blog/404">Download PDF</a> — or drop your own
-    <code>resume.pdf</code> into <code>public/</code> to make this link work.
-  </p>
+<Layout title="Resume">
+  {secoes.map((s) => (
+    <section class="cv-secao">
+      <h2>{s.titulo}</h2>
+      <div class="cv-grelha">
+        {comConteudo
+          .filter((e) => e.data.tipo === s.id)
+          .map(({ data, Content }) => (
+            <article class:list={['cv-cartao', { 'cv-destaque': data.destaque }]}>
+              <header class="cv-topo">
+                <span class="cv-selo">
+                  {!data.fim && <span class="cv-agora" aria-hidden="true" />}
+                  {data.inicio} – {data.fim ?? 'presente'}
+                </span>
+                {data.logo && (
+                  <img class="cv-logo" src={data.logo} alt="" loading="lazy" />
+                )}
+              </header>
+              <h3>{data.titulo}</h3>
+              <p class="cv-local">{data.local}</p>
+              <div class="cv-corpo"><Content /></div>
+              {data.tags.length > 0 && (
+                <ul class="cv-tags">
+                  {data.tags.map((t) => <li>{t}</li>)}
+                </ul>
+              )}
+            </article>
+          ))}
+      </div>
+    </section>
+  ))}
+</Layout>
 
-  <h2>Experience</h2>
-  <h3>Job Title — Company</h3>
-  <p class="entry-meta">2024 — present</p>
-  <ul>
-    <li>What you did, in one line.</li>
-    <li>An impact or result, if you have one.</li>
-  </ul>
+<style>
+  .cv-secao { margin-top: 2.5rem; }
 
-  <h2>Education</h2>
-  <h3>Degree — Institution</h3>
-  <p class="entry-meta">Year — Year</p>
+  .cv-secao h2 {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
 
-  <h2>Skills</h2>
-  <p>Comma-separated list, or group by category — up to you.</p>
-</BaseLayout>
+  .cv-grelha {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .cv-cartao {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .cv-cartao:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* cartão em destaque: largura total e um toque de cor */
+  .cv-destaque {
+    grid-column: 1 / -1;
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, var(--code-bg));
+  }
+  .cv-destaque h3 { font-size: 1.25rem; }
+
+  .cv-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cv-selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* bolinha a pulsar nos cargos em curso */
+  .cv-agora {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: cv-pulso 2s ease-in-out infinite;
+  }
+  @keyframes cv-pulso {
+    50% { opacity: 0.25; }
+  }
+
+  .cv-logo {
+    max-height: 28px;
+    max-width: 96px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(1);
+  }
+  :global(:root[data-theme="dark"]) .cv-logo {
+    filter: grayscale(1) invert(1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .cv-logo {
+      filter: grayscale(1) invert(1);
+    }
+  }
+
+  .cv-cartao h3 { margin: 0; font-size: 1.05rem; }
+  .cv-local { margin: 0.15rem 0 0.75rem; color: var(--text-muted); }
+
+  /* o conteúdo do Markdown vem de outro componente, por isso precisa de :global */
+  .cv-corpo :global(p) { margin: 0 0 0.5rem; }
+  .cv-corpo :global(ul) { margin: 0; padding-left: 1.1rem; }
+  .cv-corpo :global(li) { margin: 0.25rem 0; }
+
+  .cv-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cv-tags li {
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cv-cartao { transition: none; }
+    .cv-cartao:hover { transform: none; }
+    .cv-agora { animation: none; }
+  }
+
+  @media print {
+    .cv-cartao { break-inside: avoid; }
+    .cv-cartao:hover { transform: none; }
+  }
+</style>
