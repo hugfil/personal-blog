@@ -1,10 +1,10 @@
 ---
 tipo: experiencia
-titulo: O teu cargo
+titulo: Senior Software Testing Consultant
 local: Crédito Agrícola / Moey 
 logo: /personal-blog/credito-agricola_logo_sq.svg
 inicio: 2025
-tags: [Python, Cloud]
+tags: [Banking, Web, Mobile]
 ---
 
 Uma ou duas frases sobre o contexto.

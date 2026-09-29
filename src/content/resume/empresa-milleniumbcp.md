@@ -1,11 +1,11 @@
 ---
 tipo: experiencia
-titulo: O teu cargo
+titulo: Senior Software Testing Consultant
 local: Millenium bcp
 logo: /personal-blog/mbcp_logo_sq.svg
 inicio: 2019
 fim: 2022
-tags: [Python, Cloud]
+tags: [Banking, Web, Mobile]
 ---
 
 Uma ou duas frases sobre o contexto.
