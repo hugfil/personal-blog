@@ -264,6 +264,12 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+.footer-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .social-links {
   display: flex;
   align-items: center;
