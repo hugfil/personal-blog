@@ -1,8 +1,8 @@
 ---
 tipo: formacao
-titulo: Licentiate Degree in Public Administration (Pre-Bologna)
+titulo: Postgraduate Diploma in Accounting
 local: Minho University
 logo: /personal-blog/minho-university_logo_sq.svg
-inicio: 1994
-fim: 2002
+inicio: 2011
+fim: 2012
 ---
