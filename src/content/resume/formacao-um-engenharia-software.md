@@ -7,8 +7,8 @@ inicio: 2017
 fim: 2018
 ---
 
-**Core Expertise**: Computer Science
-**Programming Languages**: C, Java, Javascript, PHP
-**Web Technologies**: HTML, CSS, Bootstrap
-**Database Management**: SQL, MySQL
-**Project Management**: Project Management, Agile Methodologies (Scrum)
+- Core Expertise: Computer Science
+-  Languages: C, Java, Javascript, PHP
+- Web Technologies: HTML, CSS, Bootstrap
+- Database Management: SQL, MySQL
+- Project Management: Project Management, Agile Methodologies (Scrum)
