@@ -1,0 +1,33 @@
+---
+interface Props {
+  height?: number;
+  class?: string;
+  title?: string;
+}
+const { height = 32, class: className, title = 'Hugo Gonçalves' } = Astro.props;
+const width = Math.round((height * 204) / 134);
+---
+<svg
+  class:list={['logo', className]}
+  xmlns="http://www.w3.org/2000/svg"
+  width={width}
+  height={height}
+  viewBox="0 0 204 134"
+  role="img"
+  aria-label={title}
+>
+  <path d="M7 0V134M77 0V134" fill="none" stroke="currentColor" stroke-width="14" />
+  <path d="M183 28.4A60 60 0 1 0 197 67" fill="none" stroke="currentColor" stroke-width="14" />
+  <rect class="logo-bar" x="0" y="60" width="204" height="14" />
+</svg>
+
+<style>
+  .logo { display: block; }
+  .logo-bar { fill: var(--logo-bar, #C4C2BA); }
+
+  /* Ajusta o seletor ao mecanismo de tema do teu site */
+  :global([data-theme='dark']) .logo-bar { fill: var(--logo-bar-dark, #8F8D86); }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .logo-bar { fill: var(--logo-bar-dark, #8F8D86); }
+  }
+</style>

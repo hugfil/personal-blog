@@ -182,10 +182,14 @@ h1, h2, h3, h4 {
 }
 
 .site-title {
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  font-size: 1.75rem;
-  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.site-title:hover {
+  opacity: 0.75;
 }
 
 .search-link {

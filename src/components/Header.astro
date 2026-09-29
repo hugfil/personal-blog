@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const { pathname } = Astro.url;
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -20,7 +22,9 @@ function isCurrent(href: string) {
 
 <header class="site-header">
   <div class="site-header-inner">
-    <a class="site-title" href="/personal-blog/">HGⴾ</a>
+    <a class="site-title" href="/personal-blog/" aria-label="Hugo Gonçalves, página inicial">
+      <Logo height={28} />
+    </a>
     <nav>
       {links.map((link) => (
         <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
