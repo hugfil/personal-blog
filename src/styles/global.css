@@ -266,8 +266,12 @@ h1, h2, h3, h4 {
 
 .footer-copy {
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.4rem;
+}
+
+.footer-copy svg {
+  color: var(--text);
 }
 
 .social-links {
