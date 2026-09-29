@@ -39,7 +39,7 @@ const secoes = [
               <div class="cv-corpo"><Content /></div>
               {data.tags.length > 0 && (
                 <ul class="cv-tags">
-                  {data.tags.map((t) => <li>{t}</li>)}
+                  {data.tags.map((t) => <li class="cv-tag">{t}</li>)}
                 </ul>
               )}
             </article>
@@ -120,20 +120,23 @@ const secoes = [
     50% { opacity: 0.25; }
   }
 
+  /* logótipo em avatar redondo (símbolo claro sobre fundo transparente) */
   .cv-logo {
-    max-height: 28px;
-    max-width: 96px;
-    width: auto;
-    height: auto;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    flex-shrink: 0;
     object-fit: contain;
-    filter: grayscale(1);
+    border: 1px solid color-mix(in srgb, var(--text-muted) 45%, transparent);
+    border-radius: 50%;
+    filter: grayscale(1) invert(1); /* modo claro: símbolo passa a escuro */
   }
   :global(:root[data-theme="dark"]) .cv-logo {
-    filter: grayscale(1) invert(1);
+    filter: grayscale(1); /* modo escuro: mantém o símbolo claro */
   }
   @media (prefers-color-scheme: dark) {
     :global(:root:not([data-theme="light"])) .cv-logo {
-      filter: grayscale(1) invert(1);
+      filter: grayscale(1);
     }
   }
 
@@ -148,18 +151,18 @@ const secoes = [
   .cv-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.3rem;
     margin: 1rem 0 0;
     padding: 0;
     list-style: none;
   }
-  .cv-tags li {
-    padding: 0.15rem 0.6rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-family: var(--font-mono);
+
+  .cv-tag {
     font-size: 0.75rem;
     color: var(--text-muted);
+    border: 1px solid color-mix(in srgb, var(--text-muted) 45%, transparent);
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
