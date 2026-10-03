@@ -2,7 +2,7 @@
 tipo: formacao
 titulo: SQL Development
 local: GTI Portugal
-logo: /personal-blog/gti_logo_sq.svg
+logo: /gti_logo_sq.svg
 inicio: 2024
 fim: 2024
 ---

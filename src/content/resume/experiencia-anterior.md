@@ -2,7 +2,7 @@
 tipo: experiencia
 titulo: Accounting
 local: Various
-logo: /personal-blog/accounting_logo_sq.svg
+logo: /accounting_logo_sq.svg
 inicio: 1999
 fim: 2017
 tags: [Accounting, Finance, HR, Training]

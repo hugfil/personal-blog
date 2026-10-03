@@ -20,4 +20,4 @@ Let me explain it the only way I know how:
 
 Good projects, like good tests, shouldn't be rushed. When something is ready to be shown, it will land here.
 
-In the meantime, you can follow my first steps with AI in the [blog](/personal-blog/blog/) and the [notes](/personal-blog/notes/). ✨
+In the meantime, you can follow my first steps with AI in the [blog](/blog/) and the [notes](/notes/). ✨

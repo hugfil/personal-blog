@@ -2,7 +2,7 @@
 tipo: experiencia
 titulo: Team Lead / Senior Software Testing Consultant
 local: Noesis
-logo: /personal-blog/noesis_logo_sq.svg
+logo: /noesis_logo_sq.svg
 inicio: 2019
 destaque: true
 tags: [Consulting, Quality Management, DevOps & Automation]
