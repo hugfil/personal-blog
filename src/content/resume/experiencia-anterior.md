@@ -1,7 +1,7 @@
 ---
 tipo: experiencia
 titulo: Accounting
-local: 
+local: Various
 logo: /personal-blog/accounting_logo_sq.svg
 inicio: 1999
 fim: 2017
