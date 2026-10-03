@@ -8,4 +8,4 @@ fim: 2025
 tags: [Tourism and Hospitality, Transfers, Global, Web, Mobile]
 ---
 
-🏷️ `Client project · Noesis`
+🏷️ *Client project · Noesis*

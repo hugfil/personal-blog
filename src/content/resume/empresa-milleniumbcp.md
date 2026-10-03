@@ -8,4 +8,4 @@ fim: 2022
 tags: [Banking, Web, Mobile]
 ---
 
-🏷️ `Client project · Noesis`
+🏷️ *Client project · Noesis*

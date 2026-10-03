@@ -8,7 +8,3 @@ fim: 2019
 tags: [Proprietary Software, SaaS, Optical, Textile, IPSS]
 ---
 
-Uma ou duas frases sobre o contexto.
-
-- Um destaque concreto
-- Outro destaque
