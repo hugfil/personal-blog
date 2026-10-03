@@ -17,11 +17,11 @@ const baseUrl = import.meta.env.BASE_URL;
     <img class="avatar" src={`${import.meta.env.BASE_URL}/avatar.png`} alt="Hugo Gonçalves" width="160" height="160" />
     <h1>Hugo Gonçalves</h1>
     <p>
-      I spend my days finding out why things break, so they don't break for anyone else. 
-      I'm a software tester with plenty of experience and even more curiosity, currently working out where AI fits into the way I work. 
+      I spend my days finding out why things break, so they don't break for anyone else.
+      I'm a software tester with plenty of experience and even more curiosity, currently working out where AI fits into the way I work.
       This is where I write about it.
-      <p><a href={`/personal-blog/about/`}>More about me →</a></p>
     </p>
+    <p><a href={`/personal-blog/about/`}>More about me →</a></p>
   </div>
 
   <h2>Recent posts</h2>
@@ -39,3 +39,20 @@ const baseUrl = import.meta.env.BASE_URL;
   <!-- Correção: Injeta a subpasta correta no link para ver todos os posts -->
   <p><a class="content-link nav-link" href={`/personal-blog/blog/`}>all posts</a></p>
 </BaseLayout>
+
+<style>
+  .avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    animation: avatar-fade 0.6s ease-out both;
+  }
+
+  @keyframes avatar-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .avatar { animation: none; }
+  }
+</style>
