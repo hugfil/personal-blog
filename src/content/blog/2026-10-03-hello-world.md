@@ -21,13 +21,6 @@ So, instead of a regular welcome, let me open this space the way I know best: wi
 | **Actual result** | You're reading it |
 | **Status** | ✅ **Passed** (with a few observations, as always) |
 
-## 👋 Who's behind the keyboard
-
-I'm Hugo, a software testing consultant and team lead. I spend my days finding out why things break, so they don't break for anyone else.
-
-I started as a hands-on tester, breaking things on every screen I could find, from big desktops 🖥️ to small phones 📱. Then came APIs, automation and a healthy collection of tools. 
-Somewhere along the way I became a big believer that quality starts with a conversation 🗣️, long before the first line of code.
-
 ## 🗺️ What to expect around here
 
 - 🐛 **Why things break**: stories, lessons and the occasional "how did this even work before?"
