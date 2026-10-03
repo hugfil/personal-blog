@@ -2,7 +2,7 @@
 tipo: formacao
 titulo: Licentiate Degree in Public Administration (Pre-Bologna)
 local: Minho University
-logo: /personal-blog/minho-university_logo_sq.svg
+logo: /minho-university_logo_sq.svg
 inicio: 1994
 fim: 2002
 ---

@@ -2,7 +2,7 @@
 tipo: formacao
 titulo: Postgraduate Diploma in Computer Software Engineering
 local: Minho University
-logo: /personal-blog/minho-university_logo_sq.svg
+logo: /minho-university_logo_sq.svg
 inicio: 2017
 fim: 2018
 ---

@@ -8,20 +8,18 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 const dateFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
 
-// Obtém automaticamente o caminho correto da subpasta ('/personal-blog/')
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Hugo Gonçalves">
   <div class="hero">
-    <img class="avatar" src={`${import.meta.env.BASE_URL}/avatar.png`} alt="Hugo Gonçalves" width="160" height="160" />
+    <img class="avatar" src="/avatar.png" alt="Hugo Gonçalves" width="160" height="160" />
     <h1>Hugo Gonçalves</h1>
     <p>
       I spend my days finding out why things break, so they don't break for anyone else.
       I'm a software tester with years of experience and even more curiosity, currently working out where AI fits into the way I work.
       This is where I write about it.
     </p>
-    <p><a href={`/personal-blog/about/`}>More about me →</a></p>
+    <p><a href={`/about/`}>More about me →</a></p>
   </div>
 
   <h2>Recent posts</h2>
@@ -29,7 +27,7 @@ const baseUrl = import.meta.env.BASE_URL;
     {posts.map((post) => (
       <li>
         <!-- Correção: Injeta a subpasta correta antes do link do post -->
-        <a class="entry-title" href={`/personal-blog/blog/${post.id}/`}>{post.data.title}</a>
+        <a class="entry-title" href={`/blog/${post.id}/`}>{post.data.title}</a>
         <time datetime={post.data.pubDate.toISOString()}>
           {post.data.pubDate.toLocaleDateString('en-US', dateFormat)}
         </time>
@@ -37,7 +35,7 @@ const baseUrl = import.meta.env.BASE_URL;
     ))}
   </ul>
   <!-- Correção: Injeta a subpasta correta no link para ver todos os posts -->
-  <p><a class="content-link nav-link" href={`/personal-blog/blog/`}>all posts</a></p>
+  <p><a class="content-link nav-link" href={`/blog/`}>all posts</a></p>
 </BaseLayout>
 
 <style>
