@@ -1,8 +1,8 @@
 ---
 title: "Hello, World! 🌍 (Expected result: a blog)"
-description: "The first post of a tester's blog, written as a test case. Expected: a blog. Actual: you're reading it."
-pubDate: 2026-10-03
-tags: [blog]
+description: "The first post written as a test case."
+pubDate: 2026-09-30
+tags: [Blog]
 ---
 
 
