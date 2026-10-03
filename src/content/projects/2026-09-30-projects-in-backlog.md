@@ -2,8 +2,6 @@
 title: "Projects: currently in the backlog 🚧"
 description: "Nothing to show here yet, and that's a feature, not a bug. 🐞"
 pubDate: 2026-09-30
-url:
-repo:
 tags: [Projects]
 ---
 
