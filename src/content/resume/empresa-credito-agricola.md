@@ -7,4 +7,4 @@ inicio: 2025
 tags: [Banking, Web, Mobile]
 ---
 
-🏷️ *Client project · Noesis*
+🏷️ <small>Client project · Noesis</small>
