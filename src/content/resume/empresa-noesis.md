@@ -8,7 +8,6 @@ destaque: true
 tags: [Consulting, Quality Management, DevOps & Automation]
 ---
 
-Uma ou duas frases sobre o contexto.
 
-- Um destaque concreto
-- Outro destaque
+
+At Noesis, I've been working across different clients and projects. You'll find each one listed below.

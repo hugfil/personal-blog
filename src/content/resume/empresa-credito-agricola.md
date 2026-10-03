@@ -7,7 +7,4 @@ inicio: 2025
 tags: [Banking, Web, Mobile]
 ---
 
-Uma ou duas frases sobre o contexto.
-
-- Um destaque concreto
-- Outro destaque
+🏷️ `Client project · Noesis`
