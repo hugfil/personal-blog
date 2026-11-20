@@ -17,7 +17,7 @@ for (const post of posts) {
 const years = [...byYear.keys()].sort((a, b) => b - a);
 ---
 
-<BaseLayout title="Blog">
+<BaseLayout title="Blog" description="Blog posts by Hugo Gonçalves on software testing, test automation, BDD and using AI in QA.">
   <h1>Blog</h1>
   {years.map((year) => (
     <section class="year-group">
