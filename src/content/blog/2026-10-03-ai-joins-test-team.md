@@ -1,6 +1,6 @@
 ---
 title: "AI joins the test team 🤖"
-description: "AI joins the test team."
+description: "What happens when AI joins a software testing team? My shortlist of experiments, no hype included."
 pubDate: 2026-10-03
 tags: [Blog, AI, Roadmap]
 ---
