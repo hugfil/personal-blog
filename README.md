@@ -1,4 +1,4 @@
-# hugogoncalves.xyz
+# hugogoncalves.dev
 
 Personal site built with [Astro](https://astro.build). Content lives as
 Markdown files — no CMS, no database.
@@ -89,12 +89,12 @@ the site automatically on every push to `main`.
 
 One-time setup on GitHub:
 
-1. Push this repo to GitHub (e.g. `hugfil/hugogoncalves.xyz` or any name you
+1. Push this repo to GitHub (e.g. `hugfil/hugogoncalves.dev` or any name you
    like).
 2. In the repo, go to **Settings → Pages** and set **Source** to
    **GitHub Actions**.
 3. If you're using a custom domain (this repo is pre-configured for
-   `www.hugogoncalves.xyz` via `public/CNAME` and `astro.config.mjs`), go to
+   `hugogoncalves.dev` via `public/CNAME` and `astro.config.mjs`), go to
    **Settings → Pages → Custom domain** and confirm it, and make sure your
    DNS has the right records pointing at GitHub Pages (a `CNAME` record for
    `www` pointing to `<username>.github.io`, or `A`/`ALIAS` records for the
