@@ -20,7 +20,7 @@ const {
   headline = title,
   description,
   type = 'website',
-  image = '/avatar.png',
+  image = '/og-image.png', // 1200x630, made for link previews
   pubDate,
   updatedDate,
   tags = [],
@@ -64,6 +64,7 @@ const jsonLd =
 
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="author" content={SITE_NAME} />
 {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonicalURL} />}
 
 <!-- Open Graph: link previews on LinkedIn, Slack, WhatsApp, Facebook -->
@@ -74,13 +75,16 @@ const jsonLd =
 <meta property="og:title" content={headline} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageURL} />
+{image === '/og-image.png' && <meta property="og:image:width" content="1200" />}
+{image === '/og-image.png' && <meta property="og:image:height" content="630" />}
 <meta property="og:image:alt" content={SITE_NAME} />
+{type === 'article' && <meta property="article:author" content={SITE_NAME} />}
 {pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
 {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
 {type === 'article' && tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
 <!-- X / Twitter -->
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={headline} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageURL} />
