@@ -7,7 +7,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 );
 ---
 
-<BaseLayout title="Projects">
+<BaseLayout title="Projects" description="Side projects by Hugo Gonçalves.">
   <h1>Projects</h1>
   <ul class="entry-list">
     {projects.map((project) => (

@@ -33,7 +33,14 @@ const {
 const dateFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  pubDate={pubDate}
+  updatedDate={updatedDate}
+  tags={tags}
+>
   <p><a class="content-link nav-link" href={backHref}>{backLabel}</a></p>
   <h1>{title}</h1>
   <p class="entry-meta">

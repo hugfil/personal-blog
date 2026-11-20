@@ -1,14 +1,30 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
+  type?: 'website' | 'article';
+  image?: string;
+  pubDate?: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  noindex?: boolean;
 }
 
-const { title, description = 'Hugo Gonçalves — personal site.' } = Astro.props;
+const {
+  title,
+  description = 'Hugo Gonçalves, team lead and senior software testing consultant. Writing about testing, automation, BDD and bringing AI into QA work.',
+  type,
+  image,
+  pubDate,
+  updatedDate,
+  tags,
+  noindex,
+} = Astro.props;
 const pageTitle = title === 'Hugo Gonçalves' ? title : `${title} • Hugo Gonçalves`;
 ---
 
@@ -17,8 +33,17 @@ const pageTitle = title === 'Hugo Gonçalves' ? title : `${title} • Hugo Gonç
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
+    <SEO
+      title={pageTitle}
+      headline={title}
+      description={description}
+      type={type}
+      image={image}
+      pubDate={pubDate}
+      updatedDate={updatedDate}
+      tags={tags}
+      noindex={noindex}
+    />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

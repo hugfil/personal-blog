@@ -19,10 +19,20 @@ export async function getStaticPaths() {
 
 const { note, prevNote, nextNote } = Astro.props;
 const { Content } = await render(note);
+
+// Notes have no description field: use the start of the text for search results and link previews.
+const plain = (note.body ?? '')
+  .replace(/!\[[^\]]*\]\([^)]*\)/g, '') // images
+  .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // links -> text
+  .replace(/[#*_`>]/g, '') // markdown symbols
+  .replace(/\s+/g, ' ')
+  .trim();
+const description = plain.length > 155 ? `${plain.slice(0, 152).trimEnd()}…` : plain;
 ---
 
 <EntryLayout
   title={note.data.title}
+  description={description || undefined}
   pubDate={note.data.pubDate}
   tags={note.data.tags}
   backHref="/notes/"
