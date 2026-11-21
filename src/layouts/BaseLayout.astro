@@ -62,5 +62,17 @@ const pageTitle = title === 'Hugo Gonçalves' ? title : `${title} • Hugo Gonç
       <slot />
     </main>
     <Footer />
+
+    <!-- Cloudflare Web Analytics (no cookies). Loads only on the live site,
+         so local visits and the Playwright/Lighthouse runs are never counted. -->
+    <script is:inline>
+      if (location.hostname === 'hugogoncalves.dev') {
+        const beacon = document.createElement('script');
+        beacon.defer = true;
+        beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+        beacon.dataset.cfBeacon = JSON.stringify({ token: '6f52d331a31746479bcbf5a214b3196d' });
+        document.body.appendChild(beacon);
+      }
+    </script>
   </body>
 </html>
