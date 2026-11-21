@@ -578,13 +578,17 @@ h1, h2, h3, h4 {
 }
 
 .tag {
-  display: inline-block;
+  /* inline-flex + line-height: 1 centres the text in the pill; with the body's
+     line-height (1.65) the text box rounded unevenly at 100% zoom and sat off-centre */
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
   font-size: 0.75rem;
   color: var(--text-muted);
   text-decoration: none;
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 0.1rem 0.6rem;
+  padding: 0.3rem 0.65rem;
   margin: 0 0.3rem 0.3rem 0;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
