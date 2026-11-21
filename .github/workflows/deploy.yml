@@ -1,7 +1,10 @@
-name: Deploy to GitHub Pages
+name: Test and deploy to GitHub Pages
 
+# Pull requests: build + tests only. Push to main: build + tests + deploy.
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 permissions:
@@ -10,12 +13,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
   build:
-    name: Build Astro
+    name: Build and test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -33,7 +36,30 @@ jobs:
       - name: Build Astro website
         run: npm run build
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Check internal links
+        run: npm run test:links
+
+      - name: Accessibility and SEO tests (Playwright + axe)
+        run: npm run test:e2e
+
+      - name: Lighthouse CI
+        run: npm run test:lighthouse
+
+      - name: Upload test reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            playwright-report/
+            .lighthouseci/
+          retention-days: 14
+
       - name: Upload artifact
+        if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -41,6 +67,7 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     needs: build
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
