@@ -18,3 +18,8 @@ node_modules/
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# test output
+test-results/
+playwright-report/
+.lighthouseci/

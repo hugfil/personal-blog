@@ -8,10 +8,19 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:links": "playwright test links",
+    "test:e2e": "playwright test a11y seo",
+    "test:lighthouse": "lhci autorun",
+    "test": "npm run test:links && npm run test:e2e && npm run test:lighthouse"
   },
   "dependencies": {
-    "astro": "^7.0.0",
-    "@astrojs/rss": "^4.0.0"
+    "@astrojs/rss": "^4.0.0",
+    "astro": "^7.0.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.16.1",
+    "@playwright/test": "^1.65.1"
   }
 }
